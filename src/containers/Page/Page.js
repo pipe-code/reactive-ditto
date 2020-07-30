@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Page = (props) => {
     const [pageContent, setPageContent] = useState({haveposts: true});
 
-    fetch(_dittoURL_ + '/wp-json/page/' + props.id).then(res => res.json())
-        .then(response => { if(response[0].haveposts) setPageContent(response[0]) })
-        .catch(err => { console.log(err) });
+    const fetchData = () => {
+        fetch(_dittoURL_ + '/wp-json/page/' + props.id).then(res => res.json())
+            .then(response => { if(response[0].haveposts) setPageContent(response[0]) })
+            .catch(err => { console.log(err) });
+    }
+
+    useEffect( () => { fetchData() }, []);
 
     return (
         <section>
