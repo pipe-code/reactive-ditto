@@ -70,3 +70,37 @@ if (!is_admin()) {
 	wp_register_script('jquery', ("https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"), false);
 	wp_enqueue_script('jquery');
 }
+
+/**
+ * Get Page API
+ */
+function getPage( $data ) {
+  $args = array(  
+    'post_type'       => 'page',
+    'post_status'     => 'publish',
+    'posts_per_page'  => -1,
+    'order'           => 'DESC',
+  );
+	if ($data['id'] && $data['id'] != 0) {
+	  $args['p'] = $data['id'];
+	}
+	$query = new WP_Query($args);
+	if ($query->have_posts()):
+		while ( $query->have_posts() ):
+			$query->the_post();
+			$pages[] = (object) array(
+        "haveposts" => true,
+				'id' 		    => get_the_ID(),
+        'title' 	  => get_the_title(),
+        'content'   => get_the_content()
+			);
+		endwhile;
+		wp_reset_postdata();
+    print_r(json_encode($pages));
+    return null;
+	else:
+    print_r(json_encode(array("haveposts" => false)));
+    return null;
+  endif;
+}
+add_action( 'rest_api_init', function () { register_rest_route( 'page', '/(?P<id>\d+)', array( 'methods' => 'GET', 'callback' => 'getPage' )); });
