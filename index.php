@@ -13,7 +13,7 @@ get_header();
 ?>
 
 <script>
-	const pageSettings = { page: 'index' }
+	const pageSettings = { page: 'index', id: '<?= get_the_ID() ?>' }
 </script>
 
 <?php get_footer(); ?>

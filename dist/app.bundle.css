@@ -70,6 +70,8 @@
   .NavigationItem-module__NavItem___zF7uG a {
     color: #fff;
     font-size: 16px; }
+  .NavigationItem-module__NavItem___zF7uG.NavigationItem-module__Current___AocCK a {
+    color: #61DBFB; }
   @media (max-width: 991px) {
     .NavigationItem-module__NavItem___zF7uG {
       display: table;

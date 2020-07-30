@@ -25,7 +25,7 @@ const NavigationItems = () => {
                 <ul>
                     {mainMenu.items ? 
                         mainMenu.items.map(item => {
-                            return <NavigationItem key={item.ID} url={item.url} title={item.title}/>
+                            return <NavigationItem key={item.ID} url={item.url} title={item.title} post={item.object_id}/>
                         }) 
                         : null
                     }

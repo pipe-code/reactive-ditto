@@ -13,7 +13,7 @@ get_header();
 ?>
 
 <script>
-	const pageSettings = { page: '404' }
+	const pageSettings = { page: '404', id: '<?= get_the_ID() ?>' }
 </script>
 
 <?php get_footer(); ?>

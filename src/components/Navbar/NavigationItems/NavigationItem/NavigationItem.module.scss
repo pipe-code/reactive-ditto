@@ -8,6 +8,11 @@
         color: #fff;
         font-size: 16px;
     }
+    &.Current {
+        a {
+            color: #61DBFB;
+        }
+    }
     @media (max-width: 991px) {
         display: table;
         margin-left: auto;
