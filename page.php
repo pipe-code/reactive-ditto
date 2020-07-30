@@ -10,13 +10,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
-
-global $pageBuilder;
-$pageBuilder = get_field('shippan_components');
 ?>
 
-<main id="ditto-page">
-	<?php get_template_part('page_builder'); ?>
-</main>
+<script>
+	const pageSettings = { page: 'page', id: '<?= get_the_ID() ?>' }
+</script>
 
 <?php get_footer(); ?>
