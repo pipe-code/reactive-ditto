@@ -1,15 +1,16 @@
 import React from 'react';
+import Aux from '../../hoc/Aux';
 
-const Page = (props) => {
+const Search = (props) => {
     return (
         <section>
             <div className="container">
                 <p>
-                    [PostID]: {props.id}
+                    [Search]: {props.query}
                 </p>
             </div>
         </section>
     )
 }
 
-export default Page;
+export default Search;

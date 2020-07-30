@@ -1,15 +1,16 @@
 import React from 'react';
 
-const Page = (props) => {
+const Single = (props) => {
     return (
         <section>
             <div className="container">
                 <p>
-                    [PostID]: {props.id}
+                    [PostID]: {props.id} <br/>
+                    [ParentSlug]: {props.parentSlug}
                 </p>
             </div>
         </section>
     )
 }
 
-export default Page;
+export default Single;

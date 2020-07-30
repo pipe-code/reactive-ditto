@@ -13,7 +13,7 @@ get_header();
 ?>
 
 <script>
-	const pageSettings = { page: 'search' }
+	const pageSettings = { page: 'search', query: '<?= get_search_query() ?>' }
 </script>
 
 <?php get_footer(); ?>
