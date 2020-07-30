@@ -1,0 +1,13 @@
+@import '~normalize.css';
+@import '~bootstrap/scss/bootstrap-grid';
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+body {
+    background-color: #222;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 16px;
+    line-height: 1.1;
+    margin: 0px;
+    color: #fff;
+}
