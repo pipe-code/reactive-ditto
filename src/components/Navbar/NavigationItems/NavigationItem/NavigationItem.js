@@ -1,14 +1,14 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import styles from './NavigationItem.module.scss';
 
 const NavigationItem = (props) => {
-
-    const navStyles = (props.post == pageSettings.id) ? [styles.NavItem, styles.Current] : [styles.NavItem];
-
     return (
-        <li className={navStyles.join(' ')}>
-            <a href={props.url}>{props.title}</a>
+        <li onClick={props.click} className={styles.NavItem}>
+            <NavLink to={props.path} activeClassName="active-nav-item" exact>
+                {props.title}
+            </NavLink>
         </li>
     )
 }

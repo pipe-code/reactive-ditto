@@ -1,4 +1,4 @@
-Reactive Ditto v1.0
+Reactive Ditto Wordpress Theme v1.0
 =====
 
-> Wordpress theme with react, bootstrap and normalize.
+> Wordpress theme built with ReactJS.

@@ -1,10 +1,12 @@
 import React from 'react';
+import styles from './Footer.module.scss';
 
 const Footer = () => {
+
     return (
-        <footer>
+        <footer className={styles.Container}>
             <div className="container">
-                <p>&copy; Reactive Ditto {new Date().getFullYear()}</p>
+                © Reactive Ditto Theme {new Date().getFullYear()}
             </div>
         </footer>
     )

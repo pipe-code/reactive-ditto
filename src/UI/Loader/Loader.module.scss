@@ -1,0 +1,55 @@
+@import '../../vars';
+
+.Container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $c1;
+    z-index: 6;
+    visibility: visible;
+    opacity: 1;
+    &.Loaded {
+        visibility: hidden;
+        opacity: 0;
+        transition: .2s;
+        transition-delay: .5s;
+    }
+    .Loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        div {
+            position: absolute;
+            border: 4px solid $c2;
+            opacity: 1;
+            border-radius: 50%;
+            animation: loader-anim 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+            &:nth-child(2) {
+                animation-delay: -0.5s;
+            }
+        }
+    }
+}
+
+@keyframes loader-anim {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+  }

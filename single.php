@@ -12,8 +12,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<script>
-	const pageSettings = { page: 'single', id: '<?= get_the_ID() ?>', parentSlug: '' }
-</script>
-
 <?php get_footer(); ?>

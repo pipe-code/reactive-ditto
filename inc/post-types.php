@@ -1,15 +1,8 @@
-<?php
+<?php 
 /**
- * 
- * Default 404.
- *
+ * Register post types
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-get_header();
-?>
-
-<?php get_footer(); ?>

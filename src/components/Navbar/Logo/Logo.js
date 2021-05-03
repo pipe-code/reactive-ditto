@@ -1,15 +1,16 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from './Logo.module.scss';
 
-const Logo = () => {
+const Logo = (props) => {
+
     return (
         <div className={styles.Logo}>
-            <a href={_dittoURL_} rel="home">
-                { generalData.header.hasCustomLogo ?
-                    <img src={generalData.header.customLogo} alt="Logo" />
-                    : generalData.header.blogName
-                }
-            </a>
+            <NavLink to="/" activeClassName="active-nav-item" exact>
+                {props.hasLogo ? 
+                    <img src={props.logo} alt="Logo" />
+                : props.logo }
+            </NavLink>
         </div>
     )
 }

@@ -1,13 +1,34 @@
-@import '~normalize.css';
-@import '~bootstrap/scss/bootstrap-grid';
+// Vars
+@import './vars';
 
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+// Packages
+@import '~normalize.css';
+
+// Default
+* {
+    -webkit-font-smoothing: antialiased !important;
+}
 
 body {
-    background-color: #222;
-    font-family: 'Share Tech Mono', monospace;
+    background-color: $c1;
+    font-family: $f1;
     font-size: 16px;
     line-height: 1.1;
     margin: 0px;
-    color: #fff;
+    color: $c2;
+}
+
+.container {
+    padding: 0 80px;
+    max-width: 1440px;
+    box-sizing: border-box;
+    @media screen and (max-width: 1024px) {
+        padding: 0 60px;
+    }
+    @media screen and (max-width: 991px) {
+        padding: 0 40px;
+    }
+    @media screen and (max-width: 767px) {
+        padding: 0 25px;
+    }
 }

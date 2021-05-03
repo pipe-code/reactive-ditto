@@ -1,44 +1,63 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+// Layout
 import Layout from './Layout/Layout';
+
+// Containers
 import Index from './containers/Index/Index';
 import Page from './containers/Page/Page';
-import Archive from './containers/Archive/Archive';
-import Single from './containers/Single/Single';
-import Search from './containers/Search/Search';
 import Error404 from './containers/Error404/Error404'
 
 import './app.scss';
 
-const App = (props) => {
+const App = () => {
 
-  let container = null
-  switch (pageSettings.page) {
-    case 'index':
-      container = <Index />
-      break;
-    case 'page':
-      container = <Page id={pageSettings.id}/>
-      break;
-    case 'archive':
-      container = <Archive slug={pageSettings.slug}/>
-      break;
-    case 'single':
-      container = <Single id={pageSettings.id} parentSlug={pageSettings.parentSlug}/>
-      break;
-    case 'search':
-      container = <Search query={pageSettings.query}/>
-      break;
-    default:
-      container = <Error404 />
-      break;
-  }
+  const [routerMap, setRouterMap] = useState({
+    basename: null,
+    items: null
+  });
 
+  useEffect(() => {
+    let isCancelled = false;
+    const runAsync = async () => fetch( _dittoURL_ + '/wp-json/router/pages')
+      .then(res => res.json())
+      .then(response => {
+        setRouterMap(response);
+      })
+      .catch(err => { console.log(err) });
+
+    if (!isCancelled) runAsync();
+
+    return () => { isCancelled = true; }
+  }, [])  
+    
   return(
-    <Layout>
-      {container}
-    </Layout>
+    <>
+      { routerMap.items ?
+        <BrowserRouter basename={routerMap.basename}>
+          <Layout>
+            <Switch>
+              {routerMap.items.map(item => {
+                return (
+                  <Route key={item.ID} path={item.post_name} exact>
+                    {(item.post_type == "page") ? <Page id={item.ID} postTitle={item.post_title} postName={item.post_name} /> : null}
+                    {!item.post_type ? <Index postTitle={item.post_title} /> : null}
+                  </Route>
+                );
+              })}
+              <Route>
+                <Error404 />
+              </Route>
+            </Switch>
+          </Layout>
+        </BrowserRouter>
+      : null}
+    </>
   )
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
+console.log('What are you doing? \nLooking for secrets?');

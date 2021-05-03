@@ -12,8 +12,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<script>
-	const pageSettings = { page: 'search', query: '<?= get_search_query() ?>', id: '<?= get_the_ID() ?>' }
-</script>
-
 <?php get_footer(); ?>

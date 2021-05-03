@@ -1,12 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useStore} from '../../components/store';
 
 const Error404 = () => {
+
+    const [store, storeDispatch] = useStore();
+
+    if(store.loader) storeDispatch('TURN_LOADER_OFF');
+
+    document.title = 'Page not found';
+
     return (
-        <section>
+        <main>
             <div className="container">
-                <p>[404] Page not found.</p>
+                [Error 404]
             </div>
-        </section>
+        </main>
     )
 }
 

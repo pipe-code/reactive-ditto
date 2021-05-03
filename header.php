@@ -23,18 +23,10 @@ if ( ! defined( 'ABSPATH' ) ) {
   <?php wp_head(); ?>
   <script>
     const _dittoURI_    = "<?= get_template_directory_uri() ?>",
-          _dittoURL_    = "<?= get_site_url() ?>",
-          generalData = {
-            header: {
-              hasCustomLogo: <?= has_custom_logo() ? 1 : 0 ?>,
-              blogName: "<?php bloginfo( 'name' ) ?>",
-              customLogo: "<?= wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ) , 'full' )[0] ?>",
-              mainMenu: <?= json_encode(wp_get_nav_menu_items(get_nav_menu_locations()['main_menu'], null)) ?>
-            }
-          }
+          _dittoURL_    = "<?= get_site_url() ?>";
+
+    window.externalPublicPath = _dittoURI_ + '/dist/';
   </script>
 </head>
 
 <body <?php body_class(); ?>>
-
-
