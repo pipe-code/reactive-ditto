@@ -10,13 +10,12 @@
     "prod": "npx webpack -p"
   },
   "keywords": [],
-  "author": "",
+  "author": "pipe:code",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.10.5",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-react": "^7.10.4",
-    "@u-wave/react-vimeo": "^0.9.4",
     "babel-loader": "^8.1.0",
     "normalize.css": "^8.0.1",
     "path": "^0.12.7",
@@ -26,16 +25,16 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-share": "^4.4.0",
+    "sass": "^1.49.0",
     "url-loader": "^4.1.1",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-eval": "^7.0.0-beta.38",
     "@babel/preset-env": "^7.12.11",
-    "css-loader": "^4.1.0",
+    "css-loader": "^4.3.0",
     "file-loader": "^6.2.0",
     "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.14.1",
     "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.0",
