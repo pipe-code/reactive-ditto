@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Register Theme Scripts
  * https://developer.wordpress.org/reference/hooks/wp_enqueue_scripts/
  */
-$appVersion = '1.0.0';
 function ditto_scripts() {
+  $appVersion = '1.0.0';
   wp_enqueue_style( 'core', get_template_directory_uri() . '/style.css' );
   wp_enqueue_style( 'app-styles', get_template_directory_uri() . '/dist/app.bundle.css', array(), $appVersion );
   wp_enqueue_script( 'app-scripts', get_template_directory_uri() . '/dist/app.bundle.js', array(), $appVersion, true );
