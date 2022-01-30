@@ -21,14 +21,14 @@ const App = () => {
 
   useEffect(() => {
     let isCancelled = false;
-    const runAsync = async () => fetch( _dittoURL_ + '/wp-json/router/pages')
+    const getRoutes = async () => fetch( _dittoURL_ + '/wp-json/router/pages')
       .then(res => res.json())
       .then(response => {
         setRouterMap(response);
       })
       .catch(err => { console.log(err) });
 
-    if (!isCancelled) runAsync();
+    if (!isCancelled) getRoutes();
 
     return () => { isCancelled = true; }
   }, [])  

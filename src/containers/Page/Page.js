@@ -15,14 +15,14 @@ const Page = (props) => {
     useEffect(() => {
         let isCancelled = false;
         if(!store.loader) storeDispatch('TURN_LOADER_ON'); 
-        const runAsync = async () => fetch(_dittoURL_ + '/wp-json/page/' + props.id)
+        const getPage = async () => fetch(_dittoURL_ + '/wp-json/page/' + props.id)
             .then(res => res.json())
             .then(response => { 
                 setPageContent({ have_post: response.have_post, content: response.content });
             })
             .catch(err => { console.log(err) });
         
-        if(!isCancelled) runAsync();
+        if(!isCancelled) getPage();
 
         scroll({top: 0});
     

@@ -78,7 +78,7 @@ add_filter( 'big_image_size_threshold', '__return_false' );
  * Register ACF Custom Menu
  * https://www.advancedcustomfields.com/resources/acf_add_options_page/
  */
-function fairfax_menu_settings() {
+function ditto_menu_settings() {
   if (function_exists('acf_add_options_page')) {
     acf_add_options_page(array(
       'page_title'    => 'Theme Settings',
@@ -95,7 +95,7 @@ function fairfax_menu_settings() {
     ));
   }
 }
-add_action('init', 'fairfax_menu_settings');
+add_action('init', 'ditto_menu_settings');
 
 
 ?>

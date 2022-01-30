@@ -12,14 +12,14 @@ const Navbar = () => {
 
     useEffect(() => {
         let isCancelled = false;
-        const runAsync = async () => fetch( _dittoURL_ + '/wp-json/navigation/main_menu')
+        const getNavigation = async () => fetch( _dittoURL_ + '/wp-json/navigation/main_menu')
             .then(res => res.json())
             .then(response => {
                 setNavItems(response);
             })
             .catch(err => { console.log(err) });
         
-        if (!isCancelled) runAsync();
+        if (!isCancelled) getNavigation();
 
         return () => { isCancelled = true; }
     }, []);
