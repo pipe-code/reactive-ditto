@@ -6,7 +6,7 @@ const Logo = (props) => {
 
     return (
         <div className={styles.Logo}>
-            <NavLink to="/" activeClassName="active-nav-item" exact>
+            <NavLink to="/">
                 {props.hasLogo ? 
                     <img src={props.logo} alt="Logo" />
                 : props.logo }

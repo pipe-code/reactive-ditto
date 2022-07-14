@@ -6,7 +6,7 @@ import styles from './NavigationItem.module.scss';
 const NavigationItem = (props) => {
     return (
         <li onClick={props.click} className={styles.NavItem}>
-            <NavLink to={props.path} activeClassName="active-nav-item" exact>
+            <NavLink to={props.path}>
                 {props.title}
             </NavLink>
         </li>
