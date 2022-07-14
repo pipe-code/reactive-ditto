@@ -24,8 +24,6 @@ if ( ! defined( 'ABSPATH' ) ) {
   <script>
     const _dittoURI_    = "<?= get_template_directory_uri() ?>",
           _dittoURL_    = "<?= get_site_url() ?>";
-
-    window.externalPublicPath = _dittoURI_ + '/dist/';
   </script>
 </head>
 

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Logo from './Logo/Logo';
+import axios from '../../axiosInstance';
 import NavigationItems from './NavigationItems/NavigationItems';
 
 import styles from './Navbar.module.scss';
@@ -12,13 +13,12 @@ const Navbar = () => {
 
     useEffect(() => {
         let isCancelled = false;
-        const getNavigation = async () => fetch( _dittoURL_ + '/wp-json/navigation/main_menu')
-            .then(res => res.json())
+        const getNavigation = async () => axios.get('navigation/main_menu')
             .then(response => {
-                setNavItems(response);
+                if (response.data) setNavItems(response.data);
             })
-            .catch(err => { console.log(err) });
-        
+            .catch(err => { console.log(err) })
+
         if (!isCancelled) getNavigation();
 
         return () => { isCancelled = true; }

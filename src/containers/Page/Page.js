@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Directory from '../../components/directory';
-import {useStore} from '../../components/store';
+import axios from '../../axiosInstance';
+import { useStore } from '../../components/store';
 
 const htmlentities = (str) => {
     return str.replace(/&#(\d+);/g, function(match, dec) {
@@ -8,26 +9,28 @@ const htmlentities = (str) => {
     });
 };
 
-const Page = (props) => {
+const Page = ({ id, postTitle }) => {
     const [pageContent, setPageContent] = useState({ have_post: false, content: null });
     const [store, storeDispatch] = useStore();
 
     useEffect(() => {
         let isCancelled = false;
         if(!store.loader) storeDispatch('TURN_LOADER_ON'); 
-        const getPage = async () => fetch(_dittoURL_ + '/wp-json/page/' + props.id)
-            .then(res => res.json())
-            .then(response => { 
-                setPageContent({ have_post: response.have_post, content: response.content });
+        const getPage = async () => axios.get(`page/${id}`)
+            .then(response => {
+                if (response.data) {
+                    const { have_post, content } = response.data;
+                    setPageContent({ have_post: have_post, content: content });
+                }
             })
-            .catch(err => { console.log(err) });
+            .catch(err => { console.log(err) })
         
         if(!isCancelled) getPage();
 
         scroll({top: 0});
     
         return () => { isCancelled = true; }
-    }, [])
+    }, [ id ])
 
     useEffect(() => {
         if(pageContent.have_post && store.loader) storeDispatch('TURN_LOADER_OFF');
@@ -40,9 +43,9 @@ const Page = (props) => {
         });
     }
 
-    document.title = htmlentities(props.postTitle);
+    document.title = htmlentities(postTitle);
 
-    return (formatedContent ? formatedContent : <div className="container"><p></p></div>);
+    return (formatedContent ? formatedContent : <div className="container"></div>);
 }
 
 export default Page;

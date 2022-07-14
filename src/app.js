@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import axios from './axiosInstance';
 
 // Layout
 import Layout from './Layout/Layout';
@@ -21,36 +22,35 @@ const App = () => {
 
   useEffect(() => {
     let isCancelled = false;
-    const getRoutes = async () => fetch( _dittoURL_ + '/wp-json/router/pages')
-      .then(res => res.json())
+    const getRoutes = async () => axios.get('router/pages')
       .then(response => {
-        setRouterMap(response);
+          if (response.data) setRouterMap(response.data);
       })
-      .catch(err => { console.log(err) });
+      .catch(err => { console.log(err) })
 
     if (!isCancelled) getRoutes();
 
     return () => { isCancelled = true; }
-  }, [])  
+  }, [])
     
   return(
     <>
       { routerMap.items ?
         <BrowserRouter basename={routerMap.basename}>
           <Layout>
-            <Switch>
+            <Routes>
               {routerMap.items.map(item => {
-                return (
-                  <Route key={item.ID} path={item.post_name} exact>
-                    {(item.post_type == "page") ? <Page id={item.ID} postTitle={item.post_title} postName={item.post_name} /> : null}
-                    {!item.post_type ? <Index postTitle={item.post_title} /> : null}
-                  </Route>
-                );
+                return item.post_type == "page" ? 
+                    <Route key={item.ID} path={item.post_name} exact element={
+                      <Page id={item.ID} postTitle={item.post_title} postName={item.post_name} />
+                    }/>
+                  :
+                    <Route key={item.ID} path={item.post_name} exact element={
+                      <Index postTitle={item.post_title} />
+                    }/>
               })}
-              <Route>
-                <Error404 />
-              </Route>
-            </Switch>
+              <Route path="*" element={<Error404 />} />
+            </Routes>
           </Layout>
         </BrowserRouter>
       : null}
@@ -58,6 +58,11 @@ const App = () => {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const root = ReactDOM.createRoot(document.getElementById("app"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
 console.log('What are you doing? \nLooking for secrets?');

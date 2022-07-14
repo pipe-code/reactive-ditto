@@ -1,5 +1,4 @@
-import React, {Suspense} from 'react';
-import lazy from "react-lazy-with-preload";
+import React, {lazy, Suspense} from 'react';
 
 // Components
 

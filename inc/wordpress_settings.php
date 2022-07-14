@@ -9,10 +9,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  * https://developer.wordpress.org/reference/hooks/wp_enqueue_scripts/
  */
 function ditto_scripts() {
-  $appVersion = '1.0.0';
-  wp_enqueue_style( 'core', get_template_directory_uri() . '/style.css' );
-  wp_enqueue_style( 'app-styles', get_template_directory_uri() . '/dist/app.bundle.css', array(), $appVersion );
+  $appVersion = wp_get_theme()->get( 'Version' );
   wp_enqueue_script( 'app-scripts', get_template_directory_uri() . '/dist/app.bundle.js', array(), $appVersion, true );
+
+  // Wordpress Front Trash
+  wp_dequeue_script( 'contact-form-7');
+  wp_dequeue_script( 'jquery-ui-core' );
+  wp_dequeue_style( 'contact-form-7' );
+  wp_dequeue_style( 'global-styles' );
+  wp_dequeue_style( 'wp-block-library' );
 }
 add_action( 'wp_enqueue_scripts', 'ditto_scripts');
 
