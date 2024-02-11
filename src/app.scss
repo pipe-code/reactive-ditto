@@ -4,10 +4,13 @@
 // Packages
 @import '~normalize.css';
 
+// Vars
+@import './fonts';
+@import './vars';
+@import './grid';
+
 // Default
-* {
-    -webkit-font-smoothing: antialiased !important;
-}
+* { -webkit-font-smoothing: antialiased !important; }
 
 body {
     background-color: $c1;

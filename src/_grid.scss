@@ -1,0 +1,82 @@
+@import './vars';
+
+.container {
+    padding: 0 scaleVW($desk-margin, $desk);
+    box-sizing: border-box;
+    width: 100%;
+    @media screen and (max-width: 991px) {
+        padding: 0 scaleVW($tablet-margin, $tablet);
+    }
+    @media screen and (max-width: 767px) {
+        padding: 0 scaleVW($phone-margin, $phone);
+    }
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    width: calc(100% + scaleVW($desk-col-gap, $desk));
+    margin-left: calc(scaleVW($desk-col-gap, $desk) * -0.5);
+    @media screen and (max-width: 991px) {
+        width: calc(100% + scaleVW($tablet-col-gap, $tablet));
+        margin-left: calc(scaleVW($tablet-col-gap, $tablet) * -0.5);
+    }
+    @media screen and (max-width: 767px) {
+        width: calc(100% + scaleVW($phone-col-gap, $phone));
+        margin-left: calc(scaleVW($phone-col-gap, $phone) * -0.5);
+    }
+}
+
+@media screen and (min-width: 992px) {
+    @for $i from 1 through $desk-columns {
+        .col-#{$i} {
+            position: relative;
+            -ms-flex: 0 0 calc(100% / $desk-columns) * $i;
+            flex: 0 0 calc(100% / $desk-columns) * $i;
+            max-width: calc(100% / $desk-columns) * $i;
+            padding-left: calc(scaleVW($desk-col-gap, $desk) / 2);
+            padding-right: calc(scaleVW($desk-col-gap, $desk)  / 2);
+            box-sizing: border-box;
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    @for $i from 1 through $tablet-columns {
+        .col-md-#{$i} {
+            position: relative;
+            -ms-flex: 0 0 calc(100% / $tablet-columns) * $i;
+            flex: 0 0 calc(100% / $tablet-columns) * $i;
+            max-width: calc(100% / $tablet-columns) * $i;
+            padding-left: calc(scaleVW($tablet-col-gap, $tablet) / 2);
+            padding-right: calc(scaleVW($tablet-col-gap, $tablet) / 2);
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    @for $i from 1 through 4 {
+        .col-xs-#{$i} {
+            position: relative;
+            -ms-flex: 0 0 calc(100% / $phone-columns) * $i;
+            flex: 0 0 calc(100% / $phone-columns) * $i;
+            max-width: calc(100% / $phone-columns) * $i;
+            padding-left: calc(scaleVW($phone-col-gap, $phone) / 2);
+            padding-right: calc(scaleVW($phone-col-gap, $phone) / 2);
+        }
+    }
+}
+
+@media screen and (min-width: 992px) {
+    @for $i from 1 through $desk-columns {
+        .offset-l-#{$i} {    
+            margin-left: calc(100% / $desk-columns) * $i;
+            @media screen and (max-width: 991px) {
+                margin-left: 0;
+            }
+        }   
+    }
+}

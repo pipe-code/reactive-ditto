@@ -10,9 +10,7 @@ module.exports = {
         filename: 'app.bundle.js',
         publicPath: 'auto'
     },
-    devtool: 'source-map',
     plugins: [
-        new webpack.EvalSourceMapDevToolPlugin({}),
         new webpack.DefinePlugin({
             "process.env": JSON.stringify(process.env)
         })
